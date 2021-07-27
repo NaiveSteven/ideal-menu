@@ -1,4 +1,40 @@
 .collapse-transition {
-    -webkit-transition: .3s height ease-in-out, .3s padding-top ease-in-out, .3s padding-bottom ease-in-out;
-    transition: .3s height ease-in-out, .3s padding-top ease-in-out, .3s padding-bottom ease-in-out
+  -webkit-transition: 0.3s height ease-in-out, 0.3s padding-top ease-in-out,
+    0.3s padding-bottom ease-in-out;
+  transition: 0.3s height ease-in-out, 0.3s padding-top ease-in-out,
+    0.3s padding-bottom ease-in-out;
+}
+
+.menu-item {
+  height: 40px;
+  line-height: 40px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  cursor: pointer;
+}
+.menu-item:hover {
+  color: #1890ff;
+}
+.menu-item-title {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 0 20px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color .3s;
+}
+.submenu-title {
+    height: 40px;
+    line-height: 40px;
+    padding-right: 34px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+.submenu-title-icon {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform:translate(-50%,-50%);
+    transition: transform .5s
 }

@@ -1,19 +1,32 @@
 <template>
   <div name="app">
     <Menu :data="data" />
+    <!-- <button @click="show3 = !show3">Click Me</button> -->
+
+    <!-- <div style="margin-top: 20px; height: 200px;">
+      <CollapseTransition>
+        <div v-show="show3">
+          <div class="transition-box">el-collapse-transition</div>
+          <div class="transition-box">el-collapse-transition</div>
+        </div>
+      </CollapseTransition>
+    </div> -->
   </div>
 </template>
 
 <script>
 import Menu from "./components/Menu.vue"
+// import CollapseTransition from '../utils/collapse-transition.js';
 
 export default {
   name: "App",
   components: {
     Menu,
+    // CollapseTransition
   },
   data() {
     return {
+      show3: false,
       data: [
         { title: "根 1", name: 1 },
         {
@@ -44,7 +57,6 @@ export default {
   },
 }
 </script>
-// import CollapseTransition from '../base/collapse-transition';
 
 <style lang="scss">
 @import url("./style/index.scss");

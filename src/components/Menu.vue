@@ -11,8 +11,24 @@ export default {
     },
     activeName: {
       type: String,
-      default: ''
+      default: "",
     },
+    width: {
+      type: String,
+      default: "240px",
+    },
+  },
+  provide() {
+    return {
+      rootMenu: this,
+    }
+  },
+  computed: {
+    menuStyle() {
+      return {
+        width: this.width
+      }
+    }
   },
   methods: {
     childrenMenuRender(menuItemData) {
@@ -35,7 +51,7 @@ export default {
   },
   render() {
     return (
-      <ul>
+      <ul style={this.menuStyle}>
         {this.data.map((item) => {
           return this.childrenMenuRender(item)
         })}
