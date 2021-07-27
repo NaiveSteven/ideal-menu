@@ -44,6 +44,7 @@ export default {
   },
 }
 </script>
+// import CollapseTransition from '../base/collapse-transition';
 
 <style lang="scss">
 @import url("./style/index.scss");

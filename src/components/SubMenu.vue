@@ -8,6 +8,8 @@
 </template>
 
 <script>
+// import CollapseTransition from '../base/collapse-transition';
+
 export default {
   name: "SubName",
 }
