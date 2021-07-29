@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "lodash": "^4.17.21",
     "node-sass": "^6.0.1",
     "sass": "^1.36.0",
     "sass-loader": "^8.0.0",

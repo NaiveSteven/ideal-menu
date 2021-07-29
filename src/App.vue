@@ -1,3 +1,10 @@
+<!--
+ * @Description: Description
+ * @Author: mjqin
+ * @Date: 2021-07-26 23:13:37
+ * @LastEditors: mjqin
+ * @LastEditTime: 2021-07-29 23:37:13
+-->
 <template>
   <div name="app">
     <Menu :data="data" />
@@ -28,28 +35,28 @@ export default {
     return {
       show3: false,
       data: [
-        { title: "根 1", name: 1 },
+        { title: "根 1", name: '1' },
         {
           title: "根 2",
-          name: 2,
+          name: '2',
           children: [
             {
               title: "根 2-1",
-              name: 21,
+              name: '21',
               children: [
-                { title: "根 2-1-1", name: 211 },
-                { title: "根 2-1-2", name: 212 },
+                { title: "根 2-1-1", name: '211' },
+                { title: "根 2-1-2", name: '212' },
               ],
             },
           ],
         },
-        { title: "根 3", name: 3 },
+        { title: "根 3", name: '3' },
         {
           title: "根 4",
-          name: 4,
+          name: '4',
           children: [
-            { title: "根 4-1", name: 41 },
-            { title: "根 4-2", name: 42 },
+            { title: "根 4-1", name: '41' },
+            { title: "根 4-2", name: '42' },
           ],
         },
       ],

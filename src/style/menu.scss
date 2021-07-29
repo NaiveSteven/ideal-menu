@@ -1,9 +1,12 @@
-.collapse-transition {
-  -webkit-transition: 0.3s height ease-in-out, 0.3s padding-top ease-in-out,
-    0.3s padding-bottom ease-in-out;
-  transition: 0.3s height ease-in-out, 0.3s padding-top ease-in-out,
-    0.3s padding-bottom ease-in-out;
+.sub-menu-li {
+  /deep/ .collapse-transition {
+    -webkit-transition: 0.3s height ease-in-out, 0.3s padding-top ease-in-out,
+      0.3s padding-bottom ease-in-out;
+    transition: 0.3s height ease-in-out, 0.3s padding-top ease-in-out,
+      0.3s padding-bottom ease-in-out;
+  }
 }
+
 
 .menu-item {
   height: 40px;
@@ -37,4 +40,20 @@
     right: 16px;
     transform:translate(-50%,-50%);
     transition: transform .5s
+}
+.menu-item-active {
+  position: relative;
+  color: #2d8cf0;
+  background: #f0faff;
+  z-index: 2;
+}
+.menu-item-active::after {
+  content: "";
+  display: block;
+  width: 2px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: #2d8cf0;
 }
