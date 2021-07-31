@@ -3,13 +3,13 @@
  * @Author: mjqin
  * @Date: 2021-07-26 23:13:37
  * @LastEditors: mjqin
- * @LastEditTime: 2021-07-30 00:54:00
+ * @LastEditTime: 2021-07-31 22:58:01
 -->
 <script>
 import MenuItem from "./MenuItem.vue"
 import SubMenu from "./SubMenu.vue"
 import { cloneDeep } from "lodash"
-import Bus from "../utils/eventBus"
+import Bus from "../../utils/eventBus"
 
 export default {
   name: "Menu",
@@ -28,6 +28,10 @@ export default {
       type: String,
       default: "240px",
     },
+    menuKey: {
+      type: String,
+      default: "",
+    },
   },
   provide() {
     return {
@@ -40,6 +44,11 @@ export default {
         width: this.width,
       }
     },
+    menuClass() {
+      return {
+        "menu-container": true,
+      }
+    },
   },
   data() {
     return {
@@ -49,14 +58,20 @@ export default {
     }
   },
   created() {
-    Bus.$on("menu-item-click", (name) => (this.activeName = name))
-    Bus.$on("sub-menu-click", (name) => {
+    Bus.$on("menu-item-click" + this.menuKey, (name) => {
+      this.activeName = name
+      this.$emit("change", name)
+    })
+    Bus.$on("sub-menu-click" + this.menuKey, (name) => {
       if (this.openedNames.includes(name)) {
         const index = this.openedNames.findIndex((item) => item === name)
         this.openedNames.splice(index, 1)
       } else {
         this.openedNames.push(name)
       }
+    })
+    Bus.$on("opened-menu" + this.menuKey, (parentMenus) => {
+      this.openedNames = [...this.openedNames, ...parentMenus]
     })
   },
   methods: {
@@ -101,16 +116,22 @@ export default {
   },
   render() {
     return (
-      <ul style={this.menuStyle}>
-        {this.data.map((item) => {
-          return this.childrenMenuRender(item)
-        })}
+      <ul style={this.menuStyle} class={this.menuClass}>
+        {this.data.length > 0 &&
+          this.data.map((item) => {
+            return this.childrenMenuRender(item)
+          })}
+        {this.data.length === 0 && this.$slots.default}
       </ul>
     )
   },
   beforeDestroy() {
-    Bus.$off("menu-item-active")
-    Bus.$off("sub-menu-click")
+    Bus.$off("menu-item-active" + this.menuKey)
+    Bus.$off("sub-menu-click" + this.menuKey)
+    Bus.$off("opened-menu" + this.menuKey)
   },
 }
 </script>
+<style lang="scss" scoped>
+@import url("../../style/index.scss");
+</style>

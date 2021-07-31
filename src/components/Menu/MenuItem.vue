@@ -3,7 +3,7 @@
  * @Author: mjqin
  * @Date: 2021-07-26 23:27:01
  * @LastEditors: mjqin
- * @LastEditTime: 2021-07-30 00:47:47
+ * @LastEditTime: 2021-07-31 22:58:05
 -->
 <template>
   <li
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import Bus from "../utils/eventBus"
+import Bus from "../../utils/eventBus"
 import menuMixin from "./menu-mixin"
 
 export default {
@@ -41,10 +41,24 @@ export default {
       }
     },
   },
+  watch: {
+    name: {
+      handler(val) {
+        if (val === this.rootMenu.activeName) {
+          Bus.$emit("opened-menu" + this.rootMenu.menuKey, this.parentMenus)
+        }
+      },
+      immediate: true,
+    },
+  },
   methods: {
     handleClick() {
-      Bus.$emit("menu-item-click", this.name)
+      Bus.$emit("menu-item-click" + this.rootMenu.menuKey, this.name)
+      Bus.$emit("highlight-menu" + this.rootMenu.menuKey, this.parentMenus)
     },
   },
 }
 </script>
+<style lang="scss" scoped>
+@import url("../../style/index.scss");
+</style>
