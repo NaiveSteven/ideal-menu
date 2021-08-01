@@ -3,7 +3,7 @@
  * @Author: mjqin
  * @Date: 2021-07-26 23:27:07
  * @LastEditors: mjqin
- * @LastEditTime: 2021-07-31 22:58:14
+ * @LastEditTime: 2021-08-01 23:36:31
 -->
 <template>
   <li class="sub-menu-li">
@@ -13,11 +13,7 @@
       @click="handleClick"
     >
       <slot name="title"></slot>
-      <Icon
-        class="submenu-title-icon"
-        size="14"
-        :type="opened ? 'md-arrow-dropup' : 'md-arrow-dropdown'"
-      />
+      <Icon :class="iconClass" size="14" :type="iconType" />
     </div>
     <CollapseTransition
       ><ul v-show="opened">
@@ -46,6 +42,8 @@ export default {
   data() {
     return {
       isNeedHighLight: false, // 子项被选中，所有父级菜单需要高亮
+      isClick: false, // 是否点击 SubMenu
+      iconType: "md-arrow-dropdown",
     }
   },
   computed: {
@@ -58,11 +56,20 @@ export default {
         color: this.isNeedHighLight ? "#1890ff" : "",
       }
     },
+    iconClass() {
+      return {
+        ["submenu-title-icon"]: true,
+        ["icon-arrow"]: this.isClick,
+      }
+    },
   },
   created() {
     // 监听 opened-menu，主要是为了页面初始化，父级 menu 高亮
     Bus.$on("opened-menu" + this.rootMenu.menuKey, (parentMenus) => {
       this.isNeedHighLight = parentMenus.includes(this.name)
+      this.iconType = parentMenus.includes(this.name)
+        ? "md-arrow-dropup"
+        : "md-arrow-dropdown"
     })
     Bus.$on("highlight-menu" + this.rootMenu.menuKey, (parentMenus) => {
       this.isNeedHighLight = parentMenus.includes(this.name)
@@ -70,6 +77,7 @@ export default {
   },
   methods: {
     handleClick() {
+      this.isClick = !this.isClick
       Bus.$emit("sub-menu-click" + this.rootMenu.menuKey, this.name)
     },
   },

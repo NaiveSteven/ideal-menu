@@ -3,7 +3,7 @@
  * @Author: mjqin
  * @Date: 2021-07-31 20:19:15
  * @LastEditors: mjqin
- * @LastEditTime: 2021-07-31 22:56:04
+ * @LastEditTime: 2021-08-01 23:48:09
 -->
 <template>
   <!-- <div>asd</div> -->
@@ -27,6 +27,7 @@ export default {
         {
           title: "根 2",
           name: "2",
+          icon: "ios-stats",
           children: [
             {
               title: "根 2-1",

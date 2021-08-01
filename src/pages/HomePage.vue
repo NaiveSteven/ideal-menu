@@ -3,7 +3,7 @@
  * @Author: mjqin
  * @Date: 2021-07-26 23:13:37
  * @LastEditors: mjqin
- * @LastEditTime: 2021-07-31 22:57:37
+ * @LastEditTime: 2021-08-01 23:24:56
 -->
 <template>
   <div class="root">
@@ -26,13 +26,17 @@ export default {
   data() {
     return {
       DEMO_LIST_DATA,
-      defaultActiveName: "menu-default-active",
+      defaultActiveName: "",
     }
   },
   watch: {
     $route: {
       handler() {
-        this.defaultActiveName = this.$route.name
+        if (
+          ["menu-default-active", "menu-template"].includes(this.$route.name)
+        ) {
+          this.defaultActiveName = this.$route.name
+        }
       },
       immediate: true,
       deep: true,

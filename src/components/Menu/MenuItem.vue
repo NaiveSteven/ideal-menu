@@ -3,15 +3,10 @@
  * @Author: mjqin
  * @Date: 2021-07-26 23:27:01
  * @LastEditors: mjqin
- * @LastEditTime: 2021-07-31 22:58:05
+ * @LastEditTime: 2021-08-01 23:54:23
 -->
 <template>
-  <li
-    class="menu-item"
-    :style="menuItemStyle"
-    :class="menuItemClass"
-    @click="handleClick"
-  >
+  <li :style="menuItemStyle" :class="menuItemClass" @click="handleClick">
     <slot></slot>
   </li>
 </template>
@@ -38,6 +33,7 @@ export default {
     menuItemClass() {
       return {
         ["menu-item-active"]: this.rootMenu.activeName === this.name,
+        ["menu-item"]: true,
       }
     },
   },

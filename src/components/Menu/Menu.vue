@@ -3,18 +3,19 @@
  * @Author: mjqin
  * @Date: 2021-07-26 23:13:37
  * @LastEditors: mjqin
- * @LastEditTime: 2021-07-31 22:58:01
+ * @LastEditTime: 2021-08-01 22:41:46
 -->
 <script>
 import MenuItem from "./MenuItem.vue"
-import SubMenu from "./SubMenu.vue"
+import MenuChildern from "./MenuChildren.vue"
+import { Icon } from "view-design"
 import { cloneDeep } from "lodash"
 import Bus from "../../utils/eventBus"
 
 export default {
   name: "Menu",
   componentName: "Menu",
-  components: { MenuItem, SubMenu },
+  components: { MenuItem, Icon, MenuChildern },
   props: {
     data: {
       type: Array,
@@ -75,25 +76,31 @@ export default {
     })
   },
   methods: {
-    childrenMenuRender(menuItemData) {
-      return (
-        <li>
-          {menuItemData.children && (
-            <SubMenu key={menuItemData.name} name={menuItemData.name}>
-              <div slot="title">{menuItemData.title}</div>
-              {menuItemData.children.map((item) => {
-                return this.childrenMenuRender(item)
-              })}
-            </SubMenu>
-          )}
-          {!menuItemData.children && (
-            <MenuItem key={menuItemData.name} name={menuItemData.name}>
-              {menuItemData.title}
-            </MenuItem>
-          )}
-        </li>
-      )
-    },
+    // childrenMenuRender(menuItemData) {
+    //   return (
+    //     <li>
+    //       {menuItemData.children && (
+    //         <SubMenu key={menuItemData.name} name={menuItemData.name}>
+    //           <div slot="title">
+    //             <Icon
+    //               size="20"
+    //               type={menuItemData.icon}
+    //             />
+    //             {menuItemData.title}
+    //           </div>
+    //           {menuItemData.children.map((item) => {
+    //             return this.childrenMenuRender(item)
+    //           })}
+    //         </SubMenu>
+    //       )}
+    //       {!menuItemData.children && (
+    //         <MenuItem key={menuItemData.name} name={menuItemData.name}>
+    //           {menuItemData.title}
+    //         </MenuItem>
+    //       )}
+    //     </li>
+    //   )
+    // },
     getFlatArr(list) {
       const arr = []
       const flat = (data) => {
@@ -119,7 +126,8 @@ export default {
       <ul style={this.menuStyle} class={this.menuClass}>
         {this.data.length > 0 &&
           this.data.map((item) => {
-            return this.childrenMenuRender(item)
+            // return this.childrenMenuRender(item)
+            return <MenuChildren data={item}></MenuChildren>
           })}
         {this.data.length === 0 && this.$slots.default}
       </ul>
