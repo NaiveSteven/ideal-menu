@@ -3,13 +3,12 @@
  * @Author: mjqin
  * @Date: 2021-07-26 23:13:37
  * @LastEditors: mjqin
- * @LastEditTime: 2021-08-01 22:41:46
+ * @LastEditTime: 2021-08-02 20:49:16
 -->
 <script>
 import MenuItem from "./MenuItem.vue"
 import MenuChildern from "./MenuChildren.vue"
 import { Icon } from "view-design"
-import { cloneDeep } from "lodash"
 import Bus from "../../utils/eventBus"
 
 export default {
@@ -53,7 +52,7 @@ export default {
   },
   data() {
     return {
-      menuData: cloneDeep(this.data),
+      menuData: this.data,
       activeName: this.defaultActiveName,
       openedNames: [],
     }
@@ -100,26 +99,7 @@ export default {
     //       )}
     //     </li>
     //   )
-    // },
-    getFlatArr(list) {
-      const arr = []
-      const flat = (data) => {
-        data.forEach((item) => {
-          arr.push(item)
-          if (item.children && item.children.length > 0) {
-            flat(item.children)
-          }
-        })
-      }
-      flat(list)
-      return arr
-    },
-    // 根据 name 找到树结构当前项
-    getTreeDataItemById(name) {
-      const arr = this.getFlatArr(this.treeData)
-      const item = arr.find((item) => String(item.name) === String(name))
-      return item
-    },
+    // }
   },
   render() {
     return (
