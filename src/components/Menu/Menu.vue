@@ -3,13 +3,13 @@
  * @Author: mjqin
  * @Date: 2021-07-26 23:13:37
  * @LastEditors: mjqin
- * @LastEditTime: 2021-08-02 20:49:16
+ * @LastEditTime: 2021-08-02 22:35:19
 -->
 <script>
 import MenuItem from "./MenuItem.vue"
 import MenuChildern from "./MenuChildren.vue"
 import { Icon } from "view-design"
-import Bus from "../../utils/eventBus"
+import Bus from "../../utils/event-bus"
 
 export default {
   name: "Menu",

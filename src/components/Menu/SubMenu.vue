@@ -3,7 +3,7 @@
  * @Author: mjqin
  * @Date: 2021-07-26 23:27:07
  * @LastEditors: mjqin
- * @LastEditTime: 2021-08-01 23:36:31
+ * @LastEditTime: 2021-08-02 22:35:18
 -->
 <template>
   <li class="sub-menu-li">
@@ -25,7 +25,7 @@
 <script>
 import CollapseTransition from "../../utils/collapse-transition"
 import { Icon } from "view-design"
-import Bus from "../../utils/eventBus"
+import Bus from "../../utils/event-bus"
 import menuMixin from "./menu-mixin"
 
 export default {

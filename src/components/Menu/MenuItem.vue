@@ -3,7 +3,7 @@
  * @Author: mjqin
  * @Date: 2021-07-26 23:27:01
  * @LastEditors: mjqin
- * @LastEditTime: 2021-08-01 23:54:23
+ * @LastEditTime: 2021-08-02 22:35:17
 -->
 <template>
   <li :style="menuItemStyle" :class="menuItemClass" @click="handleClick">
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import Bus from "../../utils/eventBus"
+import Bus from "../../utils/event-bus"
 import menuMixin from "./menu-mixin"
 
 export default {
